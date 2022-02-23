@@ -61,7 +61,10 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("title", models.CharField(max_length=150, verbose_name="title")),
+                (
+                    "title",
+                    models.CharField(max_length=150, verbose_name="title"),
+                ),
                 (
                     "price",
                     models.DecimalField(
@@ -89,7 +92,10 @@ class Migration(migrations.Migration):
                 (
                     "type",
                     models.CharField(
-                        choices=[("DEPOSIT", "deposit"), ("PURCHASE", "purchase")],
+                        choices=[
+                            ("DEPOSIT", "deposit"),
+                            ("PURCHASE", "purchase"),
+                        ],
                         max_length=8,
                         verbose_name="type",
                     ),
@@ -130,7 +136,9 @@ class Migration(migrations.Migration):
                 (
                     "books",
                     models.ManyToManyField(
-                        related_name="purchases", to="tasks.Book", verbose_name="books"
+                        related_name="purchases",
+                        to="tasks.Book",
+                        verbose_name="books",
                     ),
                 ),
                 (

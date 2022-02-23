@@ -32,4 +32,4 @@ class BookFactory(factory.django.DjangoModelFactory):
         model = Book
 
     title = factory.LazyAttribute(lambda _: faker.word())
-    price = factory.Sequence(lambda n: "%d" % (n + 50))
+    price = factory.Sequence(lambda n: (n + 50))

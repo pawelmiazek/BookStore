@@ -6,3 +6,5 @@ addopts = [
     "--ignore=test-results",
     "--disable-warnings",
 ]
+[tool.black]
+line-length = 79

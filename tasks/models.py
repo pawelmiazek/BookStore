@@ -13,7 +13,10 @@ class Account(models.Model):
     """
 
     user = models.OneToOneField(
-        User, verbose_name="user", related_name="account", on_delete=models.CASCADE
+        User,
+        verbose_name="user",
+        related_name="account",
+        on_delete=models.CASCADE,
     )
     current_balance = models.DecimalField(
         max_digits=8, decimal_places=2, default=Decimal("0.00")
@@ -29,8 +32,8 @@ class Account(models.Model):
 
 class Operation(models.Model):
     """
-    Each change (deposit, purchase, etc..) of Account's balance should be reflected
-    in the Operation model for auditing purposes.
+    Each change (deposit, purchase, etc..) of Account's balance
+    should be reflected in the Operation model for auditing purposes.
     """
 
     class TypeChoices(models.TextChoices):
@@ -46,7 +49,9 @@ class Operation(models.Model):
         related_name="operations",
         on_delete=models.PROTECT,
     )
-    amount = models.DecimalField(verbose_name="amount", max_digits=6, decimal_places=2)
+    amount = models.DecimalField(
+        verbose_name="amount", max_digits=6, decimal_places=2
+    )
 
     class Meta:
         verbose_name = "Operation"
@@ -62,7 +67,9 @@ class Book(models.Model):
     """
 
     title = models.CharField(verbose_name="title", max_length=150)
-    price = models.DecimalField(verbose_name="price", max_digits=6, decimal_places=2)
+    price = models.DecimalField(
+        verbose_name="price", max_digits=6, decimal_places=2
+    )
 
     class Meta:
         verbose_name = "Book"
@@ -77,7 +84,9 @@ class Purchase(models.Model):
     Model stores data about purchases.
     """
 
-    books = models.ManyToManyField(Book, verbose_name="books", related_name="purchases")
+    books = models.ManyToManyField(
+        Book, verbose_name="books", related_name="purchases"
+    )
     operation = models.OneToOneField(
         Operation,
         verbose_name="operation",
@@ -90,4 +99,4 @@ class Purchase(models.Model):
         verbose_name_plural = "Purchases"
 
     def __str__(self) -> str:
-        return self.amount
+        return self.operation.amount
